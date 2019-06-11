@@ -155,7 +155,14 @@ computeRemainder(10.5, 3) //=> 1.5
 -----------------------------------------------------------------*/
 // Your solution for 05-computeRemainder:
 
-
+function computeRemainder(num1, num2) {
+  var div;
+  if (num2 == 0) {
+    return Infinity;
+  }
+  div = num1 % num2;
+  return div;
+}
 
 
 
@@ -178,7 +185,17 @@ range(5,2) //=> "First argument must be less than second"
 -----------------------------------------------------------------*/
 // Your solution for 06-range here:
 
-
+function range(num1, num2) {
+  var arr = [];
+  if (num1 > num2) {
+    return "First argument must be less than second";
+  }else {
+    for(i=num1; i<num2; i++) {
+      arr.push(i);
+    }
+    return arr;
+}
+}
 
 
 
@@ -197,7 +214,13 @@ reverseUpcaseString("SEI Rocks!"); //=> "!SKCOR IES"
 -----------------------------------------------------------------*/
 // Your solution for 07-reverseUpcaseString here:
 
-
+function reverseUpcaseString(str) {
+  var splitString = str.split("");
+  var reverseString = splitString.reverse();
+  console.log(reverseString);
+  var joinArr = reverseString.join("");
+  return joinArr.toUpperCase();
+}
 
 
 
