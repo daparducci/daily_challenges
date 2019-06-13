@@ -241,7 +241,15 @@ removeEnds('a'); //=> "" (empty string)
 -----------------------------------------------------------------*/
 // Your solution for 08-removeEnds here:
 
-
+function removeEnds(str) {
+  if (str.length < 3) {
+    return '';
+  }else {
+    var word = str.substr(1).slice(0, -1)
+    return word;
+  }
+}
+removeEnds('SEI ROCKS!')
 
 
 
