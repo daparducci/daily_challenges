@@ -501,6 +501,14 @@ mapArray( ['rose', 'tulip', 'daisy'], function(f, i) {
 -----------------------------------------------------------------*/
 // Your solution for 17-mapArray here:
 
+function mapArray(arr, cb) {
+  let newArr = [];
+  arr.forEach((elem, idx) => {
+    newArr.push(cb(elem, idx));
+  });
+  return newArr;
+}
+
 /*-----------------------------------------------------------------
 Challenge: 18-reduceArray
 
@@ -535,6 +543,13 @@ reduceArray( ['Yes', 'No', 'Yes', 'Maybe'], function(acc, v) {
 -----------------------------------------------------------------*/
 // Your solution for 18-reduceArray here:
 
+function reduceArray(arr, cb, initial) {
+  var result = initial;
+  arr.forEach((elem, idx) => {
+    result = cb(result, elem, idx);
+  });
+  return result;
+}
 /*-----------------------------------------------------------------
 Challenge: 19-flatten
 
@@ -562,6 +577,16 @@ flatten( [1, [2, [3, [4]]], 1, 'a', ['b', 'c']] );
 -----------------------------------------------------------------*/
 // Your solution for 19-flatten here:
 
+function flatten(arr) {
+  var newArr = [];
+  arr.forEach(elem => {
+    Array.isArray(elem)
+      ? (newArr = newArr.concat(flatten(elem)))
+      : newArr.push(elem);
+  });
+  return newArr;
+}
+
 /*-----------------------------------------------------------------
 Challenge: 20-isPrime
 
@@ -581,6 +606,17 @@ isPrime(29) //=> true
 isPrime(200) //=> false
 -----------------------------------------------------------------*/
 // Your solution for 20-isPrime here:
+function isPrime(num) {
+  if (num < 2 || !Number.isInteger(num)) {
+    return false;
+  }
+  for (i = 2; i < num; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return num > 1;
+}
 
 /*-----------------------------------------------------------------
 Challenge: 21-primeFactors
@@ -649,6 +685,17 @@ balancedBrackets( '[({}[])]' ) // => true
 -----------------------------------------------------------------*/
 // Your solution for 23-balancedBrackets here:
 
+function balancedBrackets(str) {
+  var bracket = [];
+  return str.split("").every(c => {
+    if ("([{".includes(c)) {
+      return bracket.push(c);
+    } else {
+      return "() {} []".includes(bracket.pop() + c);
+    }
+  });
+}
+
 /*-----------------------------------------------------------------
 Challenge: 24-isWinningTicket
 
@@ -675,6 +722,12 @@ isWinningTicket( [ ['ABC', 66], ['dddd', 15], ['Hello', 108] ] ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 24-isWinningTicket here:
 
+function isWinningTicket(tkt) {
+  return tkt.every(function(arr) {
+    return arr[0].includes(String.fromCharCode(arr[1]));
+  });
+}
+
 /*-----------------------------------------------------------------
 Challenge: 25-getNumForIP
 
@@ -700,6 +753,15 @@ getNumForIP( '192.156.99.15' ) // => 3231474447
 getNumForIP( '10.0.0.1' ) // => 167772161
 -----------------------------------------------------------------*/
 // Your solution for 25-getNumForIP here:
+
+function getNumForIP(str) {
+  let str2 = str.split(".").reverse();
+  let sum = 0;
+  str2.forEach(function(str2, idx) {
+    sum += parseInt(str2) * 256 ** idx;
+  });
+  return sum;
+}
 
 /*-----------------------------------------------------------------
 Challenge: 26-toCamelCase
@@ -749,6 +811,13 @@ countTheBits( 255 ) //=> 8
 countTheBits( 65535 )  //=> 16
 -----------------------------------------------------------------*/
 // Your solution for 27-countTheBits here:
+
+function countTheBits(num) {
+  return num
+    .toString(2)
+    .split("")
+    .filter(bit => bit === "1").length;
+}
 
 /*-----------------------------------------------------------------
 Challenge: 28-gridTrip
